@@ -93,8 +93,7 @@ Größe von \texttt{ptr} liegt komplett in der Hand der aufrufenden Routine. Au�
 \subsubsection{Funktionsweise des Codeausschnitts}
 Die Funktion \texttt{ownme3} nimmt ein Feld von \texttt{infoz} Stukturen und ein size\_t \texttt{count}. In einer Schleife werden \texttt{count} \texttt{infoz} vom \texttt{infoz}-Feld \texttt{in} in \texttt{out} kopiert. Am Ende wird der \texttt{infoz}-Zeiger \texttt{storage}, welcher auf \texttt{out} zeigt, "weggespeicher" und die Anzahl der kopierten \texttt{infoz} zurückgegeben.
 \subsubsection{Schwachstelle}
-Beim Kopieren der \texttt{infoz} wird die Validität der Stukturen nicht überprüft, sondern einfach mit memcpy \texttt{sizeof(struct infoz)} große Blöcke kopiert. Daher können die Struktur-Member \texttt{setting} und \texttt{userid} von \texttt{name} aus überschrieben werden.\\
-Außerdem kann \texttt{count} größer gewählt werden als die Länge von \texttt{input}, sodass weitere Speicherbereiche mit irgendwelchen anderen Inhalten in \texttt{out} geschrieben werden.
+Beim Kopieren der \texttt{infoz} wird die Validität der Stukturen nicht überprüft, sondern einfach mit memcpy \texttt{sizeof(struct infoz)} große Blöcke kopiert. Zudem wird count gegen \texttt{sizeof(storage)} geprüft, also dessen Größe in Byte. In der for-Schleife danach, wird mittels memcpy allerdings \texttt{count} mal in \texttt{infoz} großen Blöcken kopiert.
 \section{Aufgabe 3}
 Hauptprogramm zu src\_audit\_1.c, welches für die Parameter \texttt{*in} und \texttt{maxout} der Funktion \texttt{ownme1} Werte aus der Kommandozeile entgegennimmt.
 \begin{lstlisting}[frame=single]
@@ -176,7 +175,32 @@ Oder alternativ direkt: \texttt{perl -e 'print "A"x76; print "\textbackslash xd4
   \centering
     \includegraphics[scale=0.5]{a4_3.png}
 \end{figure}
-\section{Aufgabe 5}
-\section{Aufgabe 6}
-
+\section{Dokumentation des Zeitaufwandes}
+\begin{tabular}{ l c | l }
+von 13/11/24 & 17:00 & Testprogramm in C geschrieben \\
+bis & 17:30 & mit gdb vertraut gemacht \\
+\hline
+von 13/12/05 & 14:00 & Weiteres Einarbeiten in GDB \\
+bis & 15:00 & simpleres Testprogramm geschrieben \\
+&&mit Aufgabe 1 angefangen \\
+\hline
+von 13/12/10 & 14:45 & Aufgabe 1 fertig \\
+bis & 16:45 & Doku angelegt \\
+\hline
+von 13/12/12 & 11:30 & Aufgabe 1 überarbeitet \\
+bis & 12:30 & Aufgabe 2 angefangen \\
+\hline
+von 13/12/12 & 13:15 & Aufgabe 2 fertig \\
+bis & 15:00 & und dokumentiert \\
+\hline
+von 13/12/18 & 10:00 & Aufgabe 3 fertig \\
+bis & 11:00 & und dokumentiert \\
+\hline
+von 13/12/18 & 11:00 & Aufgabe 4 angefangen \\
+bis & 12:00 & \\
+\hline
+von 13/12/18 & 15:00 & Aufgabe 4 fertig \\
+bis & 16:45 & und dokumentiert \\
+\hline
+\end{tabular}
 \end{document}
